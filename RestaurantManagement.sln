@@ -15,19 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{997268FF-765A-468D-8982-9F67E2DF75B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asd", "src\project\Services\asd\asd.csproj", "{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -37,7 +25,6 @@ Global
 		{D750C7D9-0AF4-4E8F-8EE6-424D622021CD} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
 		{3ED0A67F-AA72-484D-959B-A41E50457317} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
 		{997268FF-765A-468D-8982-9F67E2DF75B7} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
-		{05DC2A9D-ABFF-4520-9CCB-6260DD40AD2E} = {D750C7D9-0AF4-4E8F-8EE6-424D622021CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A6FF3B9-A772-42E3-8CAA-0E247E883A68}
