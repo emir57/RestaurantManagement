@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FBBC916-453D-4AA2-924B-9BD4DE5EAB87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "corePackages", "corePackages", "{A559D592-67CC-4F9E-8466-0F1F1F1C3F42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{B61662F4-E2BE-4800-9F2F-7A0A84CE3155}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D750C7D9-0AF4-4E8F-8EE6-424D622021CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{3ED0A67F-AA72-484D-959B-A41E50457317}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{997268FF-765A-468D-8982-9F67E2DF75B7}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A559D592-67CC-4F9E-8466-0F1F1F1C3F42} = {5FBBC916-453D-4AA2-924B-9BD4DE5EAB87}
+		{B61662F4-E2BE-4800-9F2F-7A0A84CE3155} = {5FBBC916-453D-4AA2-924B-9BD4DE5EAB87}
+		{D750C7D9-0AF4-4E8F-8EE6-424D622021CD} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
+		{3ED0A67F-AA72-484D-959B-A41E50457317} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
+		{997268FF-765A-468D-8982-9F67E2DF75B7} = {B61662F4-E2BE-4800-9F2F-7A0A84CE3155}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A6FF3B9-A772-42E3-8CAA-0E247E883A68}
+	EndGlobalSection
+EndGlobal
