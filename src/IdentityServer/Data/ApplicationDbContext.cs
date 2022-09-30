@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Restaurant.IdentityServer.Models;
+using IdentityServer.Models;
 
-namespace Restaurant.IdentityServer.Data
+namespace IdentityServer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

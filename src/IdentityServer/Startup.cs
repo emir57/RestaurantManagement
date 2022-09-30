@@ -3,8 +3,8 @@
 
 
 using IdentityServer4;
-using Restaurant.IdentityServer.Data;
-using Restaurant.IdentityServer.Models;
+using IdentityServer.Data;
+using IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Restaurant.IdentityServer
+namespace IdentityServer
 {
     public class Startup
     {

@@ -1,4 +1,4 @@
-﻿namespace Restaurant.IdentityServer.Models.Dtos
+﻿namespace IdentityServer.Models.Dtos
 {
     public class RegisterDto
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Restaurant.IdentityServer.Migrations
+namespace IdentityServer.Migrations
 {
     public partial class first : Migration
     {

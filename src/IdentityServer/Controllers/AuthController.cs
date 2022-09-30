@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IdentityServer.Models;
+using IdentityServer.Models.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.IdentityServer.Models;
-using Restaurant.IdentityServer.Models.Dtos;
 using System.Threading.Tasks;
 
-namespace Restaurant.IdentityServer.Controllers
+namespace IdentityServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

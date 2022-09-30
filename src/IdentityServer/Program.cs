@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Restaurant.IdentityServer.Data;
-using Restaurant.IdentityServer.Models;
+using IdentityServer.Data;
+using IdentityServer.Models;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
 
-namespace Restaurant.IdentityServer
+namespace IdentityServer
 {
     public class Program
     {
