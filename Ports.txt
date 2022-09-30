@@ -1,0 +1,7 @@
+
+|-Product -> 5011
+|-ProductDetail -> 5012
+
+ |-Gateway -> 5000
+ |-Identity -> 5001
+ 
