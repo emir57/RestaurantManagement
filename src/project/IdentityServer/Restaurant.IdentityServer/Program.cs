@@ -54,6 +54,7 @@ namespace Restaurant.IdentityServer
 
                     var userManager = serviceProiver.GetRequiredService<UserManager<ApplicationUser>>();
 
+                    //todo: get admin user in appsettings.json
                     if (!userManager.Users.Any())
                     {
                         userManager.CreateAsync(new ApplicationUser
