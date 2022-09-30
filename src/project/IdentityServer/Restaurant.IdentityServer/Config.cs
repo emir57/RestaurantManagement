@@ -23,6 +23,10 @@ namespace Restaurant.IdentityServer
                 new ApiScope("scope2"),
             };
 
+        /// <summary>
+        /// /
+        /// </summary>
+
         public static IEnumerable<Client> Clients =>
             new Client[]
             {

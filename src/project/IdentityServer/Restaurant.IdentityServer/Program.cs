@@ -3,9 +3,13 @@
 
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Restaurant.IdentityServer.Data;
+using Restaurant.IdentityServer.Models;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -37,23 +41,29 @@ namespace Restaurant.IdentityServer
 
             try
             {
-                var seed = args.Contains("/seed");
-                if (seed)
-                {
-                    args = args.Except(new[] { "/seed" }).ToArray();
-                }
 
                 var host = CreateHostBuilder(args).Build();
 
-                if (seed)
+                using (var scope = host.Services.CreateScope())
                 {
-                    Log.Information("Seeding database...");
-                    var config = host.Services.GetRequiredService<IConfiguration>();
-                    var connectionString = config.GetConnectionString("DefaultConnection");
-                    SeedData.EnsureSeedData(connectionString);
-                    Log.Information("Done seeding database.");
-                    return 0;
+                    var serviceProiver = scope.ServiceProvider;
+
+                    var applicationDbContext = serviceProiver.GetRequiredService<ApplicationDbContext>();
+
+                    applicationDbContext.Database.Migrate();
+
+                    var userManager = serviceProiver.GetRequiredService<UserManager<ApplicationUser>>();
+
+                    if (!userManager.Users.Any())
+                    {
+                        userManager.CreateAsync(new ApplicationUser
+                        {
+                            UserName = "genage",
+                            Email = "ogun.ergin35@gmail.com",
+                        }, "Asd159123!").Wait();
+                    }
                 }
+
 
                 Log.Information("Starting host...");
                 host.Run();
