@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.Domain", "src\Services\ProductExtras\Services.ProductExtras.Domain\Services.ProductExtras.Domain.csproj", "{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image", "Image", "{1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Image.API", "src\Services\Image\Services.Image.API\Services.Image.API.csproj", "{5DED55AF-A027-4AA5-A421-354D55BEAB1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +108,10 @@ Global
 		{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +136,8 @@ Global
 		{105DD26A-282B-4CBA-A7C1-11D0CE58E6ED} = {30B8020D-F94D-4522-9B28-DB64ADF1BD69}
 		{4BEA723D-4DDE-402D-98EB-D858A803C5B1} = {30B8020D-F94D-4522-9B28-DB64ADF1BD69}
 		{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5} = {30B8020D-F94D-4522-9B28-DB64ADF1BD69}
+		{1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C} = {0F0958CE-BC86-4505-AFDD-EC4D77C3A5D5}
+		{5DED55AF-A027-4AA5-A421-354D55BEAB1E} = {1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A6FF3B9-A772-42E3-8CAA-0E247E883A68}
