@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Services.ProductDetail.Application\Services.ProductDetail.Application.csproj" />
+    <ProjectReference Include="..\Services.ProductDetail.Persistence\Services.ProductDetail.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
