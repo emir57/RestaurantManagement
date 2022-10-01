@@ -8,7 +8,7 @@ namespace Services.Image.API.Controllers
     public class ImagesController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> ImageSave(IFormFile image, string productId, CancellationToken cancellationToken)
+        public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
         {
             if (image != null && image.Length > 0)
             {
@@ -46,6 +46,18 @@ namespace Services.Image.API.Controllers
 
             System.IO.File.Delete(path);
             return NoContent();
+        }
+
+        [HttpGet("{productId}")]
+        public IActionResult GetImage(string productId)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", ($"{productId}.png"));
+            if (!System.IO.File.Exists(path))
+            {
+                return BadRequest("Image not found!");
+            }
+
+            return Ok("http://localhost:5014/Images/" + $"{productId}.png");
         }
     }
 }
