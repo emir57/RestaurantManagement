@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Services.ProductDetail.Application.Features.ProductDetail.Command.CreateProductsDetail;
-using System.ComponentModel;
 
 namespace Services.ProductDetail.API.Controllers
 {
@@ -10,10 +8,10 @@ namespace Services.ProductDetail.API.Controllers
     public class ProductsDetailsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> AddingNew(CreateProductsDetailCommand createProductsDetailCommand)
+        public async Task<IActionResult> Post(CreateProductsDetailCommand createProductsDetailCommand)
         {
-            var result = await Mediator.Send(createProductsDetailCommand);
-            return Ok(result);
+            await Mediator.Send(createProductsDetailCommand);
+            return NoContent();
         }
 
     }
