@@ -13,7 +13,7 @@ namespace IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
-            new ApiResource("productdetail"){Scopes={"productdetail"}}
+            new ApiResource("resource_productdetail"){Scopes={"productdetail"}}
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
