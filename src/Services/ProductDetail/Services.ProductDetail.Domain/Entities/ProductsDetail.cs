@@ -1,17 +1,17 @@
 ﻿namespace Services.ProductDetail.Domain.Entities
 {
-    public class ProductDetail : Product
+    public class ProductsDetail : Product
     {
         public string LongDescription { get; set; }
 
         public virtual ICollection<ProductExtras> ProductExtras { get; set; }
 
-        public ProductDetail()
+        public ProductsDetail()
         {
             ProductExtras = new HashSet<ProductExtras>();
         }
 
-        public ProductDetail(string longDescription, ICollection<ProductExtras> productExtras) : this()
+        public ProductsDetail(string longDescription, ICollection<ProductExtras> productExtras) : this()
         {
             LongDescription = longDescription;
             ProductExtras = productExtras;

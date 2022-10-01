@@ -2,7 +2,7 @@
 
 namespace Services.ProductDetail.Domain.Entities
 {
-    public class Feature : BaseEntity
+    public class Feature
     {
     }
 }
