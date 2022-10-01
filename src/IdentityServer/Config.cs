@@ -12,7 +12,8 @@ namespace IdentityServer
     {
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
-            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
+            new ApiResource("productdetail"){Scopes={"productdetail"}}
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
@@ -24,7 +25,8 @@ namespace IdentityServer
 
         public static IEnumerable<ApiScope> ApiScopes => new ApiScope[]
             {
-                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
+                new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
+                new ApiScope("productdetail","ProductDetail API")
             };
 
 
@@ -41,7 +43,8 @@ namespace IdentityServer
 
                     AllowedScopes =
                     {
-                        IdentityServerConstants.LocalApi.ScopeName
+                        IdentityServerConstants.LocalApi.ScopeName,
+                        "productdetail"
                     }
                 },
 
