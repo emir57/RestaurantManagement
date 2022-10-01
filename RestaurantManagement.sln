@@ -18,37 +18,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{ED0C2905-DAF2-4222-BF28-A8D518149DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Product.API", "src\Services\Product\Services.Product.API\Services.Product.API.csproj", "{3EAC386A-BFD7-4F83-9905-8C2B8D765DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Product.API", "src\Services\Product\Services.Product.API\Services.Product.API.csproj", "{3EAC386A-BFD7-4F83-9905-8C2B8D765DF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Product.Core", "src\Services\Product\Services.Product.Core\Services.Product.Core.csproj", "{1921A639-1AFB-4B72-92C9-27B4AE380394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Product.Core", "src\Services\Product\Services.Product.Core\Services.Product.Core.csproj", "{1921A639-1AFB-4B72-92C9-27B4AE380394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Product.Domain", "src\Services\Product\Services.Product.Domain\Services.Product.Domain.csproj", "{70F5E74E-C02D-47A5-A675-B467C768269A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Product.Domain", "src\Services\Product\Services.Product.Domain\Services.Product.Domain.csproj", "{70F5E74E-C02D-47A5-A675-B467C768269A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Product.Application", "src\Services\Product\Services.Product.Application\Services.Product.Application.csproj", "{0416763E-A391-4E0C-91B3-95FC735F6F0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Product.Application", "src\Services\Product\Services.Product.Application\Services.Product.Application.csproj", "{0416763E-A391-4E0C-91B3-95FC735F6F0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductDetail", "ProductDetail", "{9210B9BA-26DC-4A18-B9A1-22B3129ED8B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductDetail.API", "src\Services\ProductDetail\Services.ProductDetail.API\Services.ProductDetail.API.csproj", "{348FDEAE-8A04-45A4-96B0-B27ADE599452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductDetail.API", "src\Services\ProductDetail\Services.ProductDetail.API\Services.ProductDetail.API.csproj", "{348FDEAE-8A04-45A4-96B0-B27ADE599452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductDetail.Core", "src\Services\ProductDetail\Services.ProductDetail.Core\Services.ProductDetail.Core.csproj", "{1F08DEBF-B65C-4CA0-B960-CAD8AA9DAF78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductDetail.Core", "src\Services\ProductDetail\Services.ProductDetail.Core\Services.ProductDetail.Core.csproj", "{1F08DEBF-B65C-4CA0-B960-CAD8AA9DAF78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductDetail.Application", "src\Services\ProductDetail\Services.ProductDetail.Application\Services.ProductDetail.Application.csproj", "{291EF4A5-69AC-4A32-BC09-48822E58A214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductDetail.Application", "src\Services\ProductDetail\Services.ProductDetail.Application\Services.ProductDetail.Application.csproj", "{291EF4A5-69AC-4A32-BC09-48822E58A214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductDetail.Domain", "src\Services\ProductDetail\Services.ProductDetail.Domain\Services.ProductDetail.Domain.csproj", "{9EDF67CF-C59A-47A0-8441-FDA3607092DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductDetail.Domain", "src\Services\ProductDetail\Services.ProductDetail.Domain\Services.ProductDetail.Domain.csproj", "{9EDF67CF-C59A-47A0-8441-FDA3607092DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductExtras", "ProductExtras", "{30B8020D-F94D-4522-9B28-DB64ADF1BD69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.API", "src\Services\ProductExtras\Services.ProductExtras.API\Services.ProductExtras.API.csproj", "{7CF50F41-A239-4FDD-AC3C-99D32A252314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductExtras.API", "src\Services\ProductExtras\Services.ProductExtras.API\Services.ProductExtras.API.csproj", "{7CF50F41-A239-4FDD-AC3C-99D32A252314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.Core", "src\Services\ProductExtras\Services.ProductExtras.Core\Services.ProductExtras.Core.csproj", "{105DD26A-282B-4CBA-A7C1-11D0CE58E6ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductExtras.Core", "src\Services\ProductExtras\Services.ProductExtras.Core\Services.ProductExtras.Core.csproj", "{105DD26A-282B-4CBA-A7C1-11D0CE58E6ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.Application", "src\Services\ProductExtras\Services.ProductExtras.Application\Services.ProductExtras.Application.csproj", "{4BEA723D-4DDE-402D-98EB-D858A803C5B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductExtras.Application", "src\Services\ProductExtras\Services.ProductExtras.Application\Services.ProductExtras.Application.csproj", "{4BEA723D-4DDE-402D-98EB-D858A803C5B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductExtras.Domain", "src\Services\ProductExtras\Services.ProductExtras.Domain\Services.ProductExtras.Domain.csproj", "{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.ProductExtras.Domain", "src\Services\ProductExtras\Services.ProductExtras.Domain\Services.ProductExtras.Domain.csproj", "{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image", "Image", "{1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Image.API", "src\Services\Image\Services.Image.API\Services.Image.API.csproj", "{5DED55AF-A027-4AA5-A421-354D55BEAB1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Image.API", "src\Services\Image\Services.Image.API\Services.Image.API.csproj", "{5DED55AF-A027-4AA5-A421-354D55BEAB1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.ProductDetail.Persistence", "src\Services\ProductDetail\Services.ProductDetail.Persistence\Services.ProductDetail.Persistence.csproj", "{16D6CC8E-1248-4F01-893D-890115AC23EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +114,10 @@ Global
 		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DED55AF-A027-4AA5-A421-354D55BEAB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D6CC8E-1248-4F01-893D-890115AC23EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D6CC8E-1248-4F01-893D-890115AC23EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D6CC8E-1248-4F01-893D-890115AC23EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D6CC8E-1248-4F01-893D-890115AC23EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{6CEAEC1D-83E3-4DB5-9D71-15ED068FE4B5} = {30B8020D-F94D-4522-9B28-DB64ADF1BD69}
 		{1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C} = {0F0958CE-BC86-4505-AFDD-EC4D77C3A5D5}
 		{5DED55AF-A027-4AA5-A421-354D55BEAB1E} = {1AFC14F5-D8B6-4EFB-AF02-DD0B96543F9C}
+		{16D6CC8E-1248-4F01-893D-890115AC23EC} = {9210B9BA-26DC-4A18-B9A1-22B3129ED8B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A6FF3B9-A772-42E3-8CAA-0E247E883A68}
