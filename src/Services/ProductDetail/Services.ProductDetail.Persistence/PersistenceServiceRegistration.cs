@@ -10,7 +10,7 @@ namespace Services.ProductDetail.Persistence
         {
             services.AddSingleton<IDatabaseSettings>(sp =>
             {
-                return configuration.GetSection("DatabaseStrings").Get<DatabaseSettings>();
+                return configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
             });
 
             return services;
