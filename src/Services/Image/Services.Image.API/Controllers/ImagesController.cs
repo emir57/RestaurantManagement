@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Services.Image.API.Messages;
 
 namespace Services.Image.API.Controllers
 {
@@ -18,12 +18,12 @@ namespace Services.Image.API.Controllers
         public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
         {
             if (image == null && image.Length <= 0)
-                return BadRequest("Image is empty");
+                return BadRequest(ImageMessages.ImageNotFound);
 
             string extension = Path.GetExtension(image.FileName);
             if (extension != ".png")
             {
-                return BadRequest("Image should be .png");
+                return BadRequest(ImageMessages.InvaidImageType);
             };
 
             string newFileName = string.Format("{0}{1}", productId, extension);
@@ -45,7 +45,7 @@ namespace Services.Image.API.Controllers
             string path = Path.Combine(IMAGE_PATH, fileName);
             if (System.IO.File.Exists(path) == false)
             {
-                return BadRequest("Image not found!");
+                return BadRequest(ImageMessages.ImageNotFound);
             }
 
             System.IO.File.Delete(path);
@@ -60,7 +60,7 @@ namespace Services.Image.API.Controllers
 
             if (System.IO.File.Exists(path) == false)
             {
-                return BadRequest("Image not found!");
+                return BadRequest(ImageMessages.ImageNotFound);
             }
 
             string url = $"http://localhost:5014/Images/{productId}.png";
