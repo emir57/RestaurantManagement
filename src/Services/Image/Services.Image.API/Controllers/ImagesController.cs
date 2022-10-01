@@ -7,39 +7,43 @@ namespace Services.Image.API.Controllers
     [ApiController]
     public class ImagesController : ControllerBase
     {
+        private readonly string IMAGE_PATH = string.Empty;
+        private readonly IConfiguration _configuration;
+        public ImagesController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            IMAGE_PATH = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetSection("ImageUploadPath").Value);
+        }
         [HttpPost]
         public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
         {
-            if (image != null && image.Length > 0)
+            if (image == null && image.Length <= 0)
+                return BadRequest("Image is empty");
+
+            string extension = Path.GetExtension(image.FileName);
+            if (extension != ".png")
             {
-                var extention = Path.GetExtension(image.FileName);
+                return BadRequest("Image should be .png");
+            };
 
-                if (extention != ".png")
-                {
-                    return BadRequest("Image should be .png");
-                };
+            string newFileName = string.Format("{0}{1}", productId, extension);
+            string path = Path.Combine(IMAGE_PATH, newFileName);
 
-                var newFileName = productId + extention;
+            using var stream = new FileStream(path, FileMode.Create);
+            await image.CopyToAsync(stream, cancellationToken);
+            await stream.FlushAsync();
 
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", newFileName);
+            string returnPath = string.Format("Images/{0}", newFileName);
 
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream, cancellationToken);
-                }
-
-                var returnPath = "Images/" + newFileName;
-
-                return Ok(returnPath);
-            }
-            return BadRequest("Image is empty");
+            return Ok(returnPath);
         }
 
         [HttpDelete("{productId}")]
         public IActionResult ImageDelete(string productId)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", ($"{productId}.png"));
-            if (!System.IO.File.Exists(path))
+            string fileName = $"{productId}.png";
+            string path = Path.Combine(IMAGE_PATH, fileName);
+            if (System.IO.File.Exists(path) == false)
             {
                 return BadRequest("Image not found!");
             }
@@ -51,13 +55,16 @@ namespace Services.Image.API.Controllers
         [HttpGet("{productId}")]
         public IActionResult GetImage(string productId)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", ($"{productId}.png"));
-            if (!System.IO.File.Exists(path))
+            string fileName = $"{productId}.png";
+            var path = Path.Combine(IMAGE_PATH, fileName);
+
+            if (System.IO.File.Exists(path) == false)
             {
                 return BadRequest("Image not found!");
             }
 
-            return Ok("http://localhost:5014/Images/" + $"{productId}.png");
+            string url = $"http://localhost:5014/Images/{productId}.png";
+            return Ok(url);
         }
     }
 }
