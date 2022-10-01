@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.ProductDetail.Application.Features.ProductDetail.Command.CreateProductsDetail;
+using Services.ProductDetail.Application.Features.ProductDetail.Commands.CreateProductsDetail;
 
 namespace Services.ProductDetail.API.Controllers
 {
