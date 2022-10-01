@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Image.API.Messages;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Services.Image.API.Controllers
 {
@@ -26,12 +27,7 @@ namespace Services.Image.API.Controllers
                 return BadRequest(ImageMessages.InvaidImageType);
             };
 
-            string newFileName = string.Format("{0}{1}", productId, extension);
-            string path = Path.Combine(IMAGE_PATH, newFileName);
-
-            using var stream = new FileStream(path, FileMode.Create);
-            await image.CopyToAsync(stream, cancellationToken);
-            await stream.FlushAsync();
+            string newFileName = await uploadAsync(image, productId, extension, cancellationToken);
 
             string returnPath = string.Format("Images/{0}", newFileName);
 
@@ -65,6 +61,18 @@ namespace Services.Image.API.Controllers
 
             string url = $"http://localhost:5014/Images/{productId}.png";
             return Ok(url);
+        }
+
+        private async Task<string> uploadAsync(IFormFile image, string productId, string extension, CancellationToken cancellationToken = default)
+        {
+            string newFileName = string.Format("{0}{1}", productId, extension);
+            string path = Path.Combine(IMAGE_PATH, newFileName);
+
+            using var stream = new FileStream(path, FileMode.Create);
+            await image.CopyToAsync(stream, cancellationToken);
+            await stream.FlushAsync();
+
+            return newFileName;
         }
     }
 }
