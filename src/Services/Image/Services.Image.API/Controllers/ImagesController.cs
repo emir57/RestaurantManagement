@@ -27,7 +27,7 @@ namespace Services.Image.API.Controllers
                 {
                     await image.CopyToAsync(stream, cancellationToken);
                 }
-                //asdd
+
                 var returnPath = "Images/" + newFileName;
 
                 return Ok(returnPath);
