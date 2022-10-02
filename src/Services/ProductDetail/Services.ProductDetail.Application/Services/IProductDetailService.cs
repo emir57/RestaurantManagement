@@ -6,40 +6,55 @@ namespace Services.ProductDetail.Application.Services
     public interface IProductDetailService
     {
         /// <summary>
-        /// Get list by DeletedTime is null
+        /// Get list deleted and not deleted by predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<List<ProductsDetail>> GetAllList(Expression<Func<ProductsDetail, bool>> predicate);
+
+        /// <summary>
+        /// Get list deleted and not deleted
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<List<ProductsDetail>> GetAllList();
+
+
+        /// <summary>
+        /// Get list DeletedTime is null
         /// </summary>
         /// <returns></returns>
         Task<List<ProductsDetail>> GetListWithNoDeletedAsync();
 
         /// <summary>
-        /// Get list by predicate and DeletedTime is null
+        /// Get list DeletedTime is null by predicate
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<List<ProductsDetail>> GetListWithNoDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate);
 
         /// <summary>
-        /// Get list by deleted
+        /// Get list deleted
         /// </summary>
         /// <returns></returns>
         Task<List<ProductsDetail>> GetListWithDeletedAsync();
 
         /// <summary>
-        /// Get list by predicate and deleted
+        /// Get list deleted by predicate
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<List<ProductsDetail>> GetListWithDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate);
 
         /// <summary>
-        /// Get by deleted
+        /// Get deleted
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<ProductsDetail> GetWithDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate);
 
         /// <summary>
-        /// Get by DeletedTime is null
+        /// Get DeletedTime is null
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>

@@ -34,7 +34,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Rules
 
         public async Task ProductsDetailShouldBeExistsWhenRequestedWithId(string id)
         {
-            ProductsDetail productsDetail = await _productDetailService.GetAsync(p => p.Id == id);
+            ProductsDetail productsDetail = await _productDetailService.GetWithNoDeletedAsync(p => p.Id == id);
 
             if (productsDetail == null) ; //Need to throw after core exception created.
         }

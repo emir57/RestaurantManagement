@@ -26,7 +26,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetA
 
             public async Task<ListReadProductsDetailDto> Handle(GetAllProductsDetailQuery request, CancellationToken cancellationToken)
             {
-                IList<ProductsDetail> listProductsDetail = await _productDetailService.GetListAsync(p => true);
+                IList<ProductsDetail> listProductsDetail = await _productDetailService.GetListWithNoDeletedAsync();
 
                 await _productDetailBusinessRules.ThereShouldBeSomeProductsDetailDataAsRequested(listProductsDetail);
 

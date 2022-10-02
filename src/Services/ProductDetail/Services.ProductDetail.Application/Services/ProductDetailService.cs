@@ -2,6 +2,7 @@
 using MongoDB.Driver.Linq;
 using Services.ProductDetail.Domain.Entities;
 using Services.ProductDetail.Persistence.Settings;
+using System;
 using System.Linq.Expressions;
 
 namespace Services.ProductDetail.Application.Services
@@ -16,6 +17,18 @@ namespace Services.ProductDetail.Application.Services
             var database = client.GetDatabase(databaseSettings.DatabaseName);
 
             _productsDetailCollections = database.GetCollection<ProductsDetail>(databaseSettings.ProductDetailCollectionName);
+        }
+
+        public async Task<List<ProductsDetail>> GetAllList(Expression<Func<ProductsDetail, bool>> predicate)
+        {
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(predicate).ToListAsync();
+            return productsDetailList;
+        }
+
+        public async Task<List<ProductsDetail>> GetAllList()
+        {
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => true).ToListAsync();
+            return productsDetailList;
         }
 
         public async Task<List<ProductsDetail>> GetListWithNoDeletedAsync()

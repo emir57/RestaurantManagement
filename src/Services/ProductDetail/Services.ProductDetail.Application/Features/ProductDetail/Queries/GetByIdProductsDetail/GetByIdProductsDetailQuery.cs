@@ -34,7 +34,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetB
             {
                 await _productDetailBusinessRules.ProductsDetailShouldBeExistsWhenRequestedWithId(request.Id);
 
-                ProductsDetail productsDetail = await _productDetailService.GetAsync(p => p.Id == request.Id);
+                ProductsDetail productsDetail = await _productDetailService.GetWithNoDeletedAsync(p => p.Id == request.Id);
                 ReadProductsDetailDto readProductsDetailDto = _mapper.Map<ReadProductsDetailDto>(productsDetail);
 
                 return readProductsDetailDto;
