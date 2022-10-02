@@ -10,15 +10,19 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetB
     public class GetByIdProductsDetailQuery : IRequest<ReadProductsDetailDto>
     {
         public string Id { get; set; }
-
+        public GetByIdProductsDetailQuery(string id)
+        {
+            Id = id;
+        }
+        public GetByIdProductsDetailQuery() { }
         public class GetByIdProductsDetailQueryHandler : IRequestHandler<GetByIdProductsDetailQuery, ReadProductsDetailDto>
         {
             private readonly IProductDetailService _productDetailService;
             private readonly IMapper _mapper;
             private readonly ProductDetailBusinessRules _productDetailBusinessRules;
 
-            public GetByIdProductsDetailQueryHandler(IProductDetailService productDetailService, 
-                                                     IMapper mapper, 
+            public GetByIdProductsDetailQueryHandler(IProductDetailService productDetailService,
+                                                     IMapper mapper,
                                                      ProductDetailBusinessRules productDetailBusinessRules)
             {
                 _productDetailService = productDetailService;

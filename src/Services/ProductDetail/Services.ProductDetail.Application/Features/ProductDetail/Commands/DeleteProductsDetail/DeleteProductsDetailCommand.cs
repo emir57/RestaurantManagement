@@ -9,6 +9,11 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Commands.Del
     public class DeleteProductsDetailCommand : IRequest<DeletedProductsDetailDto>
     {
         public string Id { get; set; }
+        public DeleteProductsDetailCommand(string id)
+        {
+            Id = id;
+        }
+        public DeleteProductsDetailCommand() { }
 
         public class DeleteProductsDetailCommandHandler : IRequestHandler<DeleteProductsDetailCommand, DeletedProductsDetailDto>
         {
@@ -16,8 +21,8 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Commands.Del
             private readonly IMapper _mapper;
             private readonly ProductDetailBusinessRules _productDetailBusinessRules;
 
-            public DeleteProductsDetailCommandHandler(IProductDetailService productDetailService, 
-                                                      IMapper mapper, 
+            public DeleteProductsDetailCommandHandler(IProductDetailService productDetailService,
+                                                      IMapper mapper,
                                                       ProductDetailBusinessRules productDetailBusinessRules)
             {
                 _productDetailService = productDetailService;

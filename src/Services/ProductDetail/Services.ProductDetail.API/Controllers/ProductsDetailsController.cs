@@ -12,38 +12,40 @@ namespace Services.ProductDetail.API.Controllers
     [ApiController]
     public class ProductsDetailsController : BaseController
     {
-        [HttpGet("get/byid")]
-        public async Task<IActionResult> GetById([FromQuery] GetByIdProductsDetailQuery getByIdProductsDetailQuery)
-        {
-            ReadProductsDetailDto readProductsDetailDto = await Mediator.Send(getByIdProductsDetailQuery);
-            return Ok(readProductsDetailDto);
-        }
-
-        [HttpGet("get/all")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             ListReadProductsDetailDto listReadProductsDetailDto = await Mediator.Send(new GetAllProductsDetailQuery());
             return Ok(listReadProductsDetailDto);
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> Add(CreateProductsDetailCommand createProductsDetailCommand)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] string id)
+        {
+            GetByIdProductsDetailQuery getByIdProductsDetailQuery = new(id);
+            ReadProductsDetailDto readProductsDetailDto = await Mediator.Send(getByIdProductsDetailQuery);
+            return Ok(readProductsDetailDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateProductsDetailCommand createProductsDetailCommand)
         {
             await Mediator.Send(createProductsDetailCommand);
             return NoContent();
         }
 
-        [HttpPost("update")]
-        public async Task<IActionResult> Update([FromQuery] string id, [FromBody] WriteProductsDetailDto writeProductsDetailDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] WriteProductsDetailDto writeProductsDetailDto)
         {
             UpdateProductsDetailCommand updateProductsDetailCommand = new() { Id = id, WriteProductsDetailDto = writeProductsDetailDto };
             await Mediator.Send(updateProductsDetailCommand);
             return NoContent();
         }
 
-        [HttpPost("delete")]
-        public async Task<IActionResult> Delete([FromQuery] DeleteProductsDetailCommand deleteProductsDetailCommand)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
+            DeleteProductsDetailCommand deleteProductsDetailCommand = new(id);
             await Mediator.Send(deleteProductsDetailCommand);
             return NoContent();
         }
