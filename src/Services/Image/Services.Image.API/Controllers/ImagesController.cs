@@ -13,7 +13,7 @@ namespace Services.Image.API.Controllers
         public ImagesController(IConfiguration configuration)
         {
             _configuration = configuration;
-            IMAGE_PATH = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetSection("ImageUploadPath").Value);
+            IMAGE_PATH = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetSection("ImageSettings:UploadPath").Value);
         }
         [HttpPost]
         public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
@@ -39,7 +39,7 @@ namespace Services.Image.API.Controllers
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetImage(string productId)
         {
-            (bool result, string message) body = await productId.GetAsync(IMAGE_PATH);
+            (bool result, string message) body = await productId.GetAsync(IMAGE_PATH, _configuration.GetSection("ImageSettings:GetPath").Value);
 
             if (body.result == false)
                 return BadRequest(body.message);

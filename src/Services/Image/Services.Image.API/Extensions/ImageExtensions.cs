@@ -31,7 +31,7 @@ public static class ImageExtensions
         return new ValueTask<(bool result, string message)>((true, string.Empty));
     }
 
-    public static ValueTask<(bool result, string message)> GetAsync(this string productId, string imagePath)
+    public static ValueTask<(bool result, string message)> GetAsync(this string productId, string imagePath, string hostPath)
     {
         string fileName = $"{productId}.png";
         var path = Path.Combine(imagePath, fileName);
@@ -39,7 +39,7 @@ public static class ImageExtensions
         if (File.Exists(path) == false)
             return new ValueTask<(bool result, string message)>((false, ImageMessages.ImageNotFound));
 
-        string url = $"http://localhost:5014/Images/{productId}.png";
+        string url = $"{hostPath}/{productId}.png";
         return new ValueTask<(bool result, string message)>((true, url));
     }
 
