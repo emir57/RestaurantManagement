@@ -33,16 +33,20 @@ namespace Services.ProductDetail.Application.Services
 
         public async Task AddAsync(ProductsDetail productDetail)
         {
+            productDetail.CreatedTime = DateTime.Now.Date;
+            productDetail.UpdatedTime = DateTime.Now.Date;
             await _productsDetailCollections.InsertOneAsync(productDetail);
         }
 
         public async Task DeleteAsync(string id)
         {
-            await _productsDetailCollections.DeleteOneAsync(x => x.Id == id);
+            ProductsDetail productsDetail = await this.GetAsync(p => p.Id == id);
+            productsDetail.DeletedTime = DateTime.Now.Date;
         }
 
         public async Task UpdateAsync(ProductsDetail productDetail)
         {
+            productDetail.UpdatedTime = DateTime.Now.Date;
             await _productsDetailCollections.FindOneAndReplaceAsync(x => x.Id == productDetail.Id, productDetail);
         }
     }
