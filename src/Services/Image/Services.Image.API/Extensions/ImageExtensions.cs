@@ -19,6 +19,18 @@ public static class ImageExtensions
         return new ValueTask<(bool result, string message)>((true, returnPath));
     }
 
+    public static ValueTask<(bool result, string message)> DeleteAsync(this string productId, string imagePath)
+    {
+        string fileName = $"{productId}.png";
+        string path = Path.Combine(imagePath, fileName);
+
+        if (File.Exists(path) == false)
+            return new ValueTask<(bool result, string message)>((false, ImageMessages.ImageNotFound));
+
+        File.Delete(path);
+        return new ValueTask<(bool result, string message)>((true, string.Empty));
+    }
+
     private async static Task<string> uploadAsync(IFormFile image, string productId, string imagePath, string extension, CancellationToken cancellationToken = default)
     {
         string newFileName = string.Format("{0}{1}", productId, extension);

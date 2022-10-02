@@ -26,16 +26,13 @@ namespace Services.Image.API.Controllers
         }
 
         [HttpDelete("{productId}")]
-        public IActionResult ImageDelete(string productId)
+        public async Task<IActionResult> ImageDelete(string productId)
         {
-            string fileName = $"{productId}.png";
-            string path = Path.Combine(IMAGE_PATH, fileName);
-            if (System.IO.File.Exists(path) == false)
-            {
-                return BadRequest(ImageMessages.ImageNotFound);
-            }
+            (bool result, string message) body = await productId.DeleteAsync(IMAGE_PATH);
 
-            System.IO.File.Delete(path);
+            if (body.result == false)
+                return BadRequest(body.message);
+
             return NoContent();
         }
 
