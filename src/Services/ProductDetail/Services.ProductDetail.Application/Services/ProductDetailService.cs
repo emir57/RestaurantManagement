@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using Services.ProductDetail.Domain.Entities;
 using Services.ProductDetail.Persistence.Settings;
 using System.Linq.Expressions;
@@ -17,18 +18,46 @@ namespace Services.ProductDetail.Application.Services
             _productsDetailCollections = database.GetCollection<ProductsDetail>(databaseSettings.ProductDetailCollectionName);
         }
 
-        public async Task<List<ProductsDetail>> GetListAsync(Expression<Func<ProductsDetail, bool>> predicate)
+        public async Task<List<ProductsDetail>> GetListWithNoDeletedAsync()
         {
-            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(predicate).ToListAsync();
-            //need to fill "ProductExtras" and "Feature" after other microservices done.
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime.HasValue == false).ToListAsync();
             return productsDetailList;
         }
 
-        public async Task<ProductsDetail> GetAsync(Expression<Func<ProductsDetail, bool>> predicate)
+        public async Task<List<ProductsDetail>> GetListWithNoDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate)
+        {
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime.HasValue == false).ToListAsync();
+            productsDetailList = productsDetailList.AsQueryable().Where(predicate).ToList();
+            return productsDetailList;
+        }
+
+        public async Task<List<ProductsDetail>> GetListWithDeletedAsync()
+        {
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime.HasValue == true).ToListAsync();
+            return productsDetailList;
+        }
+
+        public async Task<List<ProductsDetail>> GetListWithDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate)
+        {
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime.HasValue == true).ToListAsync();
+            productsDetailList = productsDetailList.AsQueryable().Where(predicate).ToList();
+            return productsDetailList;
+        }
+
+        public async Task<ProductsDetail> GetWithDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate)
         {
             ProductsDetail productsDetail = await _productsDetailCollections.Find(predicate).FirstAsync();
-            //need to fill "ProductExtras" and "Feature" after other microservices done.
-            return productsDetail;
+            return productsDetail.DeletedTime.HasValue == true ?
+                productsDetail :
+                default;
+        }
+        public async Task<ProductsDetail> GetWithNoDeletedAsync(Expression<Func<ProductsDetail, bool>> predicate)
+        {
+            ProductsDetail productsDetail = await _productsDetailCollections.Find(predicate).FirstAsync();
+
+            return productsDetail.DeletedTime.HasValue == false ?
+                productsDetail :
+                default;
         }
 
         public async Task AddAsync(ProductsDetail productDetail)
@@ -40,8 +69,9 @@ namespace Services.ProductDetail.Application.Services
 
         public async Task DeleteAsync(string id)
         {
-            ProductsDetail productsDetail = await this.GetAsync(p => p.Id == id);
+            ProductsDetail productsDetail = await GetWithNoDeletedAsync(p => p.Id == id);
             productsDetail.DeletedTime = DateTime.Now.Date;
+            await UpdateAsync(productsDetail);
         }
 
         public async Task UpdateAsync(ProductsDetail productDetail)

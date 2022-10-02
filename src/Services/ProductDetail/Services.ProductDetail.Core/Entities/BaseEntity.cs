@@ -10,13 +10,13 @@ namespace Services.ProductDetail.Core.Entities
         public string Id { get; set; }
 
         [BsonRepresentation(BsonType.DateTime)]
-        public DateTime CreatedTime { get; set; }
+        public DateTime? CreatedTime { get; set; }
 
         [BsonRepresentation(BsonType.DateTime)]
-        public DateTime UpdatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
 
         [BsonRepresentation(BsonType.DateTime)]
-        public DateTime DeletedTime { get; set; }
+        public DateTime? DeletedTime { get; set; }
 
         public BaseEntity()
         {
