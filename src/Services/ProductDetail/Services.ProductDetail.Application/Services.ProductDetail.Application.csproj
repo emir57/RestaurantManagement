@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Services.ProductDetail.Persistence\Services.ProductDetail.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ProductDetail\Queries\" />
+  </ItemGroup>
+
 </Project>

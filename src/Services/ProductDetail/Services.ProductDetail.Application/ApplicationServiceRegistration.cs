@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Services.ProductDetail.Application.Features.ProductDetail.Constants;
+using Services.ProductDetail.Application.Features.ProductDetail.Rules;
 using Services.ProductDetail.Application.Services;
 
 namespace Services.ProductDetail.Application
@@ -10,8 +12,10 @@ namespace Services.ProductDetail.Application
         {
             services.AddSingleton<IProductDetailService, ProductDetailService>();
 
-            services.AddMediatR(typeof(ApplicationServiceRegistration));
+            services.AddScoped<ProductDetailBusinessRules>();
+            services.AddScoped<ProductDetailBusinessRulesMessages>();
 
+            services.AddMediatR(typeof(ApplicationServiceRegistration));
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
 
             return services;
