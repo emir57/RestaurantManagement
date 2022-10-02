@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Services.Image.API.Extensions;
 using Services.Image.API.Messages;
 
 namespace Services.Image.API.Controllers
@@ -17,20 +18,11 @@ namespace Services.Image.API.Controllers
         [HttpPost]
         public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
         {
-            if (image == null && image.Length <= 0)
-                return BadRequest(ImageMessages.ImageNotFound);
+            (bool result, string message) body = await image.UploadAsync(IMAGE_PATH, productId);
+            if (body.result == false)
+                return BadRequest(body.message);
 
-            string extension = Path.GetExtension(image.FileName);
-            if (extension != ".png")
-            {
-                return BadRequest(ImageMessages.InvaidImageType);
-            };
-
-            string newFileName = await uploadAsync(image, productId, extension, cancellationToken);
-
-            string returnPath = string.Format("Images/{0}", newFileName);
-
-            return Ok(returnPath);
+            return Ok(body.message);
         }
 
         [HttpDelete("{productId}")]
