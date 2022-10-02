@@ -10,7 +10,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Rules
         private readonly IProductDetailService _productDetailService;
         private readonly ProductDetailBusinessRulesMessages _messages;
 
-        public ProductDetailBusinessRules(ProductDetailBusinessRulesMessages messages, 
+        public ProductDetailBusinessRules(ProductDetailBusinessRulesMessages messages,
                                           IProductDetailService productDetailService)
         {
             _messages = messages;
@@ -41,7 +41,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Rules
 
         public async Task ThereShouldBeSomeProductsDetailDataAsRequested(IList<ProductsDetail> listProductsDetail)
         {
-            if (listProductsDetail.Count == 0) ; //Need to throw after core exception created.
+            if (listProductsDetail.Any() == false) ; //Need to throw after core exception created.
         }
     }
 }

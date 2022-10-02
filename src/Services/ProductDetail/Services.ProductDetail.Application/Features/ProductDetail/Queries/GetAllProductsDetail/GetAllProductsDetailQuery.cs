@@ -29,7 +29,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetA
             {
                 List<ProductsDetail> listProductsDetail = await _productDetailService.GetListWithNoDeletedAsync();
 
-                //await _productDetailBusinessRules.ThereShouldBeSomeProductsDetailDataAsRequested(listProductsDetail);
+                await _productDetailBusinessRules.ThereShouldBeSomeProductsDetailDataAsRequested(listProductsDetail);
 
                 ListReadProductsDetailModel model = new()
                 {
