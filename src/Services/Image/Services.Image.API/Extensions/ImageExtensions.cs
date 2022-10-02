@@ -31,6 +31,18 @@ public static class ImageExtensions
         return new ValueTask<(bool result, string message)>((true, string.Empty));
     }
 
+    public static ValueTask<(bool result, string message)> GetAsync(this string productId, string imagePath)
+    {
+        string fileName = $"{productId}.png";
+        var path = Path.Combine(imagePath, fileName);
+
+        if (File.Exists(path) == false)
+            return new ValueTask<(bool result, string message)>((false, ImageMessages.ImageNotFound));
+
+        string url = $"http://localhost:5014/Images/{productId}.png";
+        return new ValueTask<(bool result, string message)>((true, url));
+    }
+
     private async static Task<string> uploadAsync(IFormFile image, string productId, string imagePath, string extension, CancellationToken cancellationToken = default)
     {
         string newFileName = string.Format("{0}{1}", productId, extension);

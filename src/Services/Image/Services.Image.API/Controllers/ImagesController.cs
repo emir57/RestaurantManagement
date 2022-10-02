@@ -37,30 +37,14 @@ namespace Services.Image.API.Controllers
         }
 
         [HttpGet("{productId}")]
-        public IActionResult GetImage(string productId)
+        public async Task<IActionResult> GetImage(string productId)
         {
-            string fileName = $"{productId}.png";
-            var path = Path.Combine(IMAGE_PATH, fileName);
+            (bool result, string message) body = await productId.GetAsync(IMAGE_PATH);
 
-            if (System.IO.File.Exists(path) == false)
-            {
-                return BadRequest(ImageMessages.ImageNotFound);
-            }
+            if (body.result == false)
+                return BadRequest(body.message);
 
-            string url = $"http://localhost:5014/Images/{productId}.png";
-            return Ok(url);
-        }
-
-        private async Task<string> uploadAsync(IFormFile image, string productId, string extension, CancellationToken cancellationToken = default)
-        {
-            string newFileName = string.Format("{0}{1}", productId, extension);
-            string path = Path.Combine(IMAGE_PATH, newFileName);
-
-            using var stream = new FileStream(path, FileMode.Create);
-            await image.CopyToAsync(stream, cancellationToken);
-            await stream.FlushAsync();
-
-            return newFileName;
+            return Ok(body.message);
         }
     }
 }
