@@ -1,5 +1,5 @@
 ﻿namespace Services.ProductDetail.Application.Features.ProductDetail.Dtos;
 
-public sealed class CreatedProductsDetail
+public sealed class ReadFeatureDto
 {
 }
