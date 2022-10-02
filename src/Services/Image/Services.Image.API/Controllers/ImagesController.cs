@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Image.API.Extensions;
-using Services.Image.API.Messages;
 
 namespace Services.Image.API.Controllers
 {
@@ -39,7 +38,8 @@ namespace Services.Image.API.Controllers
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetImage(string productId)
         {
-            (bool result, string message) body = await productId.GetAsync(IMAGE_PATH, _configuration.GetSection("ImageSettings:GetPath").Value);
+            (bool result, string message) body 
+                = await productId.GetAsync(IMAGE_PATH, _configuration.GetSection("ImageSettings:GetPath").Value);
 
             if (body.result == false)
                 return BadRequest(body.message);
