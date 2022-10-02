@@ -79,5 +79,12 @@ namespace Services.ProductDetail.Application.Services
             productDetail.UpdatedTime = DateTime.Now.Date;
             await _productsDetailCollections.FindOneAndReplaceAsync(x => x.Id == productDetail.Id, productDetail);
         }
+
+        public async Task UndoDeleteAsync(string id)
+        {
+            ProductsDetail productsDetail = await GetWithDeletedAsync(p => p.Id == id);
+            productsDetail.DeletedTime = null;
+            await UpdateAsync(productsDetail);
+        }
     }
 }

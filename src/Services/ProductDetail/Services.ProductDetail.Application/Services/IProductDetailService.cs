@@ -48,5 +48,6 @@ namespace Services.ProductDetail.Application.Services
         Task AddAsync(ProductsDetail productDetail);
         Task UpdateAsync(ProductsDetail productDetail);
         Task DeleteAsync(string id);
+        Task UndoDeleteAsync(string id);
     }
 }
