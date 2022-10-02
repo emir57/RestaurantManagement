@@ -7,13 +7,13 @@ namespace Services.ProductDetail.Domain.Entities
     public class ProductExtras : BaseEntity
     {
 
-        [BsonRepresentation(BsonType.ObjectId)]
+        //[BsonRepresentation(BsonType.ObjectId)]
         public string ProductDetailId { get; set; }
 
         [BsonIgnore]
         public ProductsDetail ProductDetail { get; set; }
 
-        [BsonRepresentation(BsonType.ObjectId)]
+        //[BsonRepresentation(BsonType.ObjectId)]
         public string ExtraId { get; set; }
 
         [BsonIgnore]

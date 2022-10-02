@@ -8,7 +8,16 @@ public sealed class ProductDetailMapperProfile : Profile
 {
     public ProductDetailMapperProfile()
     {
-        CreateMap<ProductsDetail, WriteProductsDetailDto>().ReverseMap();
+        CreateMap<ProductsDetail, WriteProductsDetailDto>()
+            .ReverseMap();
+
         CreateMap<ProductsDetail, ReadProductsDetailDto>().ReverseMap();
+
+        CreateMap<WriteFeatureDto, Feature>().ReverseMap();
+
+        CreateMap<WriteProductExtrasDto, ProductExtras>()
+            .ForMember(x => x.Id, opt => opt.Ignore())
+            .ForMember(x => x.ExtraId, opt => opt.MapFrom(x => x.Id))
+            .ReverseMap();
     }
 }

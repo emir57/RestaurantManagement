@@ -8,5 +8,5 @@ public sealed class WriteProductsDetailDto
     public string Image { get; set; }
     public WriteFeatureDto Feature { get; set; }
     public string LongDescription { get; set; }
-    public ICollection<WriteProductExtrasDto> ProductExtras { get; set; }
+    public List<WriteProductExtrasDto> ProductExtras { get; set; }
 }
