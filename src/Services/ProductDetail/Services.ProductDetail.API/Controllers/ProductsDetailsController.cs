@@ -3,6 +3,7 @@ using Services.ProductDetail.Application.Features.ProductDetail.Commands.CreateP
 using Services.ProductDetail.Application.Features.ProductDetail.Commands.DeleteProductsDetail;
 using Services.ProductDetail.Application.Features.ProductDetail.Commands.UpdateProductsDetail;
 using Services.ProductDetail.Application.Features.ProductDetail.Dtos;
+using Services.ProductDetail.Application.Features.ProductDetail.Models;
 using Services.ProductDetail.Application.Features.ProductDetail.Queries.GetAllProductsDetail;
 using Services.ProductDetail.Application.Features.ProductDetail.Queries.GetByIdProductsDetail;
 
@@ -15,8 +16,9 @@ namespace Services.ProductDetail.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            ListReadProductsDetailDto listReadProductsDetailDto = await Mediator.Send(new GetAllProductsDetailQuery());
-            return Ok(listReadProductsDetailDto);
+            GetAllProductsDetailQuery request = new();
+            ListReadProductsDetailModel listReadProductsDetailModel = await Mediator.Send(request);
+            return Ok(listReadProductsDetailModel);
         }
 
         [HttpGet("{id}")]
@@ -35,9 +37,9 @@ namespace Services.ProductDetail.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] WriteProductsDetailDto writeProductsDetailDto)
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateProductsDetailCommand updateProductsDetailCommand)
         {
-            UpdateProductsDetailCommand updateProductsDetailCommand = new() { Id = id, WriteProductsDetailDto = writeProductsDetailDto };
+            updateProductsDetailCommand.Id = id;
             await Mediator.Send(updateProductsDetailCommand);
             return NoContent();
         }

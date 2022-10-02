@@ -9,7 +9,7 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Commands.Upd
 {
     public class UpdateProductsDetailCommand : IRequest<UpdatedProductsDetailDto>
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public WriteProductsDetailDto WriteProductsDetailDto { get; set; }
 
         public class UpdateProductsDetailCommandHandler : IRequestHandler<UpdateProductsDetailCommand, UpdatedProductsDetailDto>

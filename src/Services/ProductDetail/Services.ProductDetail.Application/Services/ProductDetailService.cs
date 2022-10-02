@@ -33,7 +33,7 @@ namespace Services.ProductDetail.Application.Services
 
         public async Task<List<ProductsDetail>> GetListWithNoDeletedAsync()
         {
-            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime.HasValue == false).ToListAsync();
+            List<ProductsDetail> productsDetailList = await _productsDetailCollections.Find(x => x.DeletedTime == null).ToListAsync();
             return productsDetailList;
         }
 

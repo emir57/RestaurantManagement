@@ -1,22 +1,23 @@
 ﻿using AutoMapper;
 using MediatR;
 using Services.ProductDetail.Application.Features.ProductDetail.Dtos;
+using Services.ProductDetail.Application.Features.ProductDetail.Models;
 using Services.ProductDetail.Application.Features.ProductDetail.Rules;
 using Services.ProductDetail.Application.Services;
 using Services.ProductDetail.Domain.Entities;
 
 namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetAllProductsDetail
 {
-    public class GetAllProductsDetailQuery : IRequest<ListReadProductsDetailDto>
+    public class GetAllProductsDetailQuery : IRequest<ListReadProductsDetailModel>
     {
-        public class GetAllProductsDetailQueryHandler : IRequestHandler<GetAllProductsDetailQuery, ListReadProductsDetailDto>
+        public class GetAllProductsDetailQueryHandler : IRequestHandler<GetAllProductsDetailQuery, ListReadProductsDetailModel>
         {
             private readonly IProductDetailService _productDetailService;
             private readonly IMapper _mapper;
             private readonly ProductDetailBusinessRules _productDetailBusinessRules;
 
-            public GetAllProductsDetailQueryHandler(IProductDetailService productDetailService, 
-                                                    IMapper mapper, 
+            public GetAllProductsDetailQueryHandler(IProductDetailService productDetailService,
+                                                    IMapper mapper,
                                                     ProductDetailBusinessRules productDetailBusinessRules)
             {
                 _productDetailService = productDetailService;
@@ -24,15 +25,18 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Queries.GetA
                 _productDetailBusinessRules = productDetailBusinessRules;
             }
 
-            public async Task<ListReadProductsDetailDto> Handle(GetAllProductsDetailQuery request, CancellationToken cancellationToken)
+            public async Task<ListReadProductsDetailModel> Handle(GetAllProductsDetailQuery request, CancellationToken cancellationToken)
             {
-                IList<ProductsDetail> listProductsDetail = await _productDetailService.GetListWithNoDeletedAsync();
+                List<ProductsDetail> listProductsDetail = await _productDetailService.GetListWithNoDeletedAsync();
 
-                await _productDetailBusinessRules.ThereShouldBeSomeProductsDetailDataAsRequested(listProductsDetail);
+                //await _productDetailBusinessRules.ThereShouldBeSomeProductsDetailDataAsRequested(listProductsDetail);
 
-                ListReadProductsDetailDto listReadProductsDetailDto = _mapper.Map<ListReadProductsDetailDto>(listProductsDetail);
+                ListReadProductsDetailModel model = new()
+                {
+                    Items = _mapper.Map<List<ReadProductsDetailDto>>(listProductsDetail)
+                };
 
-                return listReadProductsDetailDto;
+                return model;
             }
         }
     }

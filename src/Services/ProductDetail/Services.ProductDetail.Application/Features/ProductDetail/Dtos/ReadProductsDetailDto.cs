@@ -9,10 +9,5 @@ public sealed class ReadProductsDetailDto
     public string Image { get; set; }
     public ReadFeatureDto Feature { get; set; }
     public string LongDescription { get; set; }
-    public ICollection<ReadProductExtrasDto> ProductExtras { get; set; }
-}
-
-public sealed class ListReadProductsDetailDto
-{
-    public IList<ReadProductsDetailDto> ListProductsDetailDtos { get; set; }
+    //public ICollection<ReadProductExtrasDto> ProductExtras { get; set; }
 }
