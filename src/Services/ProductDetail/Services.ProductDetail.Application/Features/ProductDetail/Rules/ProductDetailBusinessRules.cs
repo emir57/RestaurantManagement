@@ -38,5 +38,10 @@ namespace Services.ProductDetail.Application.Features.ProductDetail.Rules
 
             if (productsDetail == null) ; //Need to throw after core exception created.
         }
+
+        public async Task ThereShouldBeSomeProductsDetailDataAsRequested(IList<ProductsDetail> listProductsDetail)
+        {
+            if (listProductsDetail.Count == 0) ; //Need to throw after core exception created.
+        }
     }
 }

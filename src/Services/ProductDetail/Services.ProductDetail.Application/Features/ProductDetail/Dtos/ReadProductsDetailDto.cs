@@ -11,3 +11,8 @@ public sealed class ReadProductsDetailDto
     public string LongDescription { get; set; }
     public ICollection<ReadProductExtrasDto> ProductExtras { get; set; }
 }
+
+public sealed class ListReadProductsDetailDto
+{
+    public IList<ReadProductsDetailDto> ListProductsDetailDtos { get; set; }
+}
