@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Image.API.Messages;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Services.Image.API.Controllers
 {
