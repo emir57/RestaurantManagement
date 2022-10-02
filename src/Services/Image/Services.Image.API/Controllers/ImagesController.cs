@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Services.Image.API.Extensions;
 
 namespace Services.Image.API.Controllers
 {
@@ -7,57 +7,44 @@ namespace Services.Image.API.Controllers
     [ApiController]
     public class ImagesController : ControllerBase
     {
+        private readonly string IMAGE_PATH = string.Empty;
+        private readonly IConfiguration _configuration;
+        public ImagesController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            IMAGE_PATH = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetSection("ImageSettings:UploadPath").Value);
+        }
         [HttpPost]
         public async Task<IActionResult> ImageSave(IFormFile image, [FromQuery] string productId, CancellationToken cancellationToken)
         {
-            if (image != null && image.Length > 0)
-            {
-                var extention = Path.GetExtension(image.FileName);
+            (bool result, string message) body = await image.UploadAsync(IMAGE_PATH, productId);
+            if (body.result == false)
+                return BadRequest(body.message);
 
-                if (extention != ".png")
-                {
-                    return BadRequest("Image should be .png");
-                };
-
-                var newFileName = productId + extention;
-
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", newFileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream, cancellationToken);
-                }
-
-                var returnPath = "Images/" + newFileName;
-
-                return Ok(returnPath);
-            }
-            return BadRequest("Image is empty");
+            return Ok(body.message);
         }
 
         [HttpDelete("{productId}")]
-        public IActionResult ImageDelete(string productId)
+        public async Task<IActionResult> ImageDelete(string productId)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", ($"{productId}.png"));
-            if (!System.IO.File.Exists(path))
-            {
-                return BadRequest("Image not found!");
-            }
+            (bool result, string message) body = await productId.DeleteAsync(IMAGE_PATH);
 
-            System.IO.File.Delete(path);
+            if (body.result == false)
+                return BadRequest(body.message);
+
             return NoContent();
         }
 
         [HttpGet("{productId}")]
-        public IActionResult GetImage(string productId)
+        public async Task<IActionResult> GetImage(string productId)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", ($"{productId}.png"));
-            if (!System.IO.File.Exists(path))
-            {
-                return BadRequest("Image not found!");
-            }
+            (bool result, string message) body 
+                = await productId.GetAsync(IMAGE_PATH, _configuration.GetSection("ImageSettings:GetPath").Value);
 
-            return Ok("http://localhost:5014/Images/" + $"{productId}.png");
+            if (body.result == false)
+                return BadRequest(body.message);
+
+            return Ok(body.message);
         }
     }
 }
